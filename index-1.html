@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Faridpur Zilla School — 185 Years of Glory</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Tiro+Bangla:ital@0;1&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+/* simplified for brevity: will work same as previous */
+body{font-family:'Inter','Tiro Bangla',sans-serif;margin:0;}
+.intro-overlay{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;color:white;overflow:hidden;background:linear-gradient(120deg,#0b63d6,#b91c1c,#0f9d58);background-size:600% 600%;animation:introGradient 12s ease infinite;}
+@keyframes introGradient{0%{background-position:0% 50%;}33%{background-position:50% 50%;}66%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+.signature{font-family:'Great Vibes',cursive;font-size:3rem;white-space:nowrap;overflow:hidden;}
+.subtitle{font-family:'Great Vibes',cursive;font-size:1.8rem;white-space:nowrap;margin-top:.5rem;}
+.fade-out{opacity:0;transition:opacity 1s ease;}
+</style>
+</head>
+<body class="scroll-smooth intro-locked">
+<div id="intro" class="intro-overlay">
+  <div id="signature" class="signature"></div>
+  <div id="subtitle" class="subtitle" style="opacity:0;"></div>
+</div>
+
+<header class="bg-red-800 text-white text-center py-4 text-2xl font-bold">
+  <img src="Fzslogo" alt="FZS Logo" class="inline h-10 w-auto mr-2">FZS <span class="text-yellow-400">185</span> Years Celebration
+</header>
+
+<main class="text-center py-20">
+  <h1 class="text-3xl font-bold mb-4 text-red-700">Faridpur Zilla School — 185th Anniversary</h1>
+  <video class="mx-auto rounded-xl shadow-2xl border-4 border-yellow-400" controls width="720">
+    <source src="Anniversaryvideo.mp4" type="video/mp4">
+    আপনার ব্রাউজার এই ভিডিও প্লে করতে পারছে না।
+  </video>
+</main>
+
+<footer class="bg-red-800 text-white py-4 text-center text-sm">&copy; ২০২৫ ফরিদপুর জিলা স্কুল।</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const signatureText="S.M. Ridwanullah Ruhama";
+  const subtitleText="185th Anniversary Celebration 🎊";
+  const sig=document.getElementById('signature');
+  const sub=document.getElementById('subtitle');
+  const intro=document.getElementById('intro');
+  function typeText(el,text,speed=80){return new Promise(res=>{el.textContent='';let i=0;function step(){if(i<text.length){el.textContent+=text.charAt(i);i++;setTimeout(step,speed);}else res();}step();});}
+  (async()=>{
+    await typeText(sig,signatureText,80);
+    await new Promise(r=>setTimeout(r,400));
+    sub.style.opacity=1;
+    await typeText(sub,subtitleText,70);
+    await new Promise(r=>setTimeout(r,900));
+    intro.classList.add('fade-out');
+    setTimeout(()=>intro.remove(),1000);
+    document.body.classList.remove('intro-locked');
+  })();
+});
+</script>
+</body>
+</html>
