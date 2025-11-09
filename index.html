@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faridpur Zilla School — 185 Years of Glory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Tiro+Bangla:ital@0;1&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        /* কাস্টম স্টাইল এবং ফন্ট */
+        body {
+            font-family: 'Inter', 'Tiro Bangla', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+        }
+
+        .header-bg {
+            background: linear-gradient(135deg, #8B0000 0%, #B22222 100%); /* Deep Maroon/Red */
+        }
+
+        .btn-primary {
+            background-color: #FFD700; /* Golden Yellow */
+            color: #8B0000; /* Deep Maroon */
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #e5c100;
+            transform: scale(1.05);
+        }
+
+        /* স্ক্রোল অ্যানিমেশন */
+        .animate-on-scroll {
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth transition */
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+        }
+
+        /* অ্যানিমেশন ইন স্টেট: জুম ইন এবং ফেড ইন */
+        .animate-in {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        /* কাস্টম টাইল উইথ শ্যাডো */
+        .card-tile {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 5px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        /* ফিক্সড নেভিগেশন */
+        .fixed-nav {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* ইন্ট্রো ওভারলে স্টাইল (লাল, নীল, সবুজ থিম) */
+        .intro-overlay{
+            position:fixed;
+            inset:0;
+            z-index:10000;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            color:white;
+            overflow:hidden;
+            /* লাল (ভবন), নীল (ড্রেস), সবুজ (দেশ) রঙের গ্রেডিয়েন্ট */
+            background:linear-gradient(120deg,#1D4ED8,#B91C1C,#059669); 
+            background-size:600% 600%;
+            animation:introGradient 12s ease infinite;
+        }
+        @keyframes introGradient{
+            0%{background-position:0% 50%;}
+            33%{background-position:50% 50%;}
+            66%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
+        }
+        
+        /* ফন্ট সাইজ সামঞ্জস্য: সিগনেচার (কার্সিভ) স্টাইল */
+        .signature{
+            font-family:'Great Vibes',cursive;
+            font-size: clamp(2rem, 8vw, 4rem); 
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: 90vw; 
+        }
+        .subtitle{
+            font-family:'Great Vibes',cursive; /* সাবটাইটলেও কার্সিভ স্টাইল */
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            white-space: nowrap;
+            margin-top: .5rem;
+            max-width: 90vw;
+        }
+        .fade-out{
+            opacity:0;
+            transition:opacity 1s ease;
+        }
+    </style>
+</head>
+<body class="scroll-smooth intro-locked">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Tiro Bangla', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <div id="intro" class="intro-overlay">
+      <div id="signature" class="signature text-center"></div>
+      <div id="subtitle" class="subtitle text-center" style="opacity:0;"></div>
+    </div>
+    <header id="navbar" class="fixed-nav header-bg text-white w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-2xl font-extrabold tracking-tight">
+                        FZS <span class="text-yellow-400">185</span>
+                    </a>
+                </div>
+                <nav class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">হোম</a>
+                        <a href="#about" class="hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">ইতিহাস</a>
+                        <a href="#gallery" class="hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">গ্যালারি</a>
+                        <a href="#events" class="hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">অনুষ্ঠান</a>
+                        <a href="#notable-alumni" class="hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">কৃতি ছাত্র</a>
+                        <a href="#alumni" class="hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">শুভেচ্ছা বার্তা</a>
+                        <a href="#contact" class="hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium transition duration-150">যোগাযোগ</a>
+                    </div>
+                </nav>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-yellow-400 hover:text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-red-700 transition duration-150">হোম</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-red-700 transition duration-150">ইতিহাস</a>
+                <a href="#gallery" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-red-700 transition duration-150">গ্যালারি</a>
+                <a href="#events" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-red-700 transition duration-150">অনুষ্ঠান</a>
+                <a href="#notable-alumni" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-red-700 transition duration-150">কৃতি ছাত্র</a>
+                <a href="#alumni" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-red-700 transition duration-150">শুভেচ্ছা বার্তা</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-red-700 transition duration-150">যোগাযোগ</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        
+        <section id="home" class="pt-20 header-bg min-h-screen flex items-center justify-center">
+            <div class="max-w-7xl mx-auto px-4 py-16 sm:py-24 lg:py-32 text-center text-white">
+                <div class="header-logo-container">
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-tight tracking-wide animate-on-scroll">
+                        FZS <span class="text-yellow-400">185</span> Years Celebration
+                    </h1>
+                    <p class="mt-4 text-xl sm:text-2xl font-light text-yellow-200 animate-on-scroll" style="transition-delay: 0.2s;">
+                        “Faridpur Zilla School — 185 Years of Glory (1840–2025)”
+                    </p>
+                </div>
+
+                <div class="mt-12 mx-auto max-w-4xl rounded-xl overflow-hidden shadow-2xl border-4 border-yellow-400 animate-on-scroll" style="transition-delay: 0.5s;">
+                    
+                    <div class="aspect-video">
+                        <video class="w-full h-full" controls>
+                            <source src="Fzss.mp4" type="video/MP4">
+                            আপনার ব্রাউজার এই ভিডিও প্লে করতে পারছে না।
+                        </video>
+                    </div>
+                    </div>
+
+                <a href="#about" class="mt-12 inline-flex items-center space-x-2 btn-primary rounded-full py-3 px-8 text-lg font-semibold shadow-xl hover:shadow-2xl animate-on-scroll" style="transition-delay: 0.8s;">
+                    <span>আমাদের গৌরবময় ইতিহাস জানুন</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <section id="about" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-extrabold text-red-800 text-center mb-12 animate-on-scroll">
+                    স্কুলের ইতিহাস ও ঐতিহ্য
+                </h2>
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    
+                    <div class="animate-on-scroll">
+                        <h3 class="text-3xl font-bold mb-4 text-red-700">ঐতিহ্যবাহী লাল ভবনের গল্প</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            ফরিদপুর জিলা স্কুলের ১৮৫ বছরের ইতিহাসের নীরব সাক্ষী হলো এই লাল ভবন। ১৮৪০ সালে প্রতিষ্ঠার পর থেকে, এই ভবনটি হাজার হাজার কৃতি শিক্ষার্থীর স্মৃতি ধারণ করে আছে। এর প্রতিটি ইট ও দেওয়ালে মিশে আছে শিক্ষাগুরুদের ত্যাগ ও শিক্ষার্থীদের স্বপ্নের কথা। এই ভবন শুধু একটি কাঠামো নয়, এটি আমাদের চেতনার প্রতীক।
+                        </p>
+                        <p class="text-gray-700 leading-relaxed font-medium">
+                            <i class="fas fa-school text-red-500 mr-2"></i> প্রতিষ্ঠাতা ও গুরুত্বপূর্ণ অধ্যায়
+                        </p>
+                    </div>
+
+                    <div class="bg-gray-100 p-6 rounded-xl card-tile animate-on-scroll" style="transition-delay: 0.3s;">
+                        <h3 class="text-xl font-bold mb-4 text-gray-800">প্রতিষ্ঠা সাল: <span class="text-red-700">১৮৪০</span></h3>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-start">
+                                <span class="font-bold text-red-700 mr-2">১.</span> 
+                                <span>প্রতিষ্ঠালগ্ন: স্কুল স্থাপনের প্রাথমিক উদ্দেশ্য ও কাঠামো।</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-bold text-red-700 mr-2">২.</span> 
+                                <span>বিংশ শতকের অগ্রগতি: আধুনিক শিক্ষা পদ্ধতির প্রবর্তন ও কৃতি ছাত্রদের উত্থান।</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-bold text-red-700 mr-2">৩.</span> 
+                                <span>মুক্তিযুদ্ধে স্কুলের অবদান: স্বাধীনতা সংগ্রামে স্কুলের শিক্ষক ও ছাত্রদের ভূমিকা।</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-bold text-red-700 mr-2">৪.</span> 
+                                <span>১৮৫ বছর পূর্তি: গৌরবময় এই পথচলার আধুনিক উদযাপন।</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="py-16 sm:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-extrabold text-red-800 text-center mb-12 animate-on-scroll">
+                    স্মৃতির অ্যালবাম: গ্যালারি
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    
+                    <div class="rounded-xl overflow-hidden card-tile animate-on-scroll">
+                        <img src="Fzs.jpg" alt="পুরনো স্কুলের দৃশ্য" class="w-full h-48 object-cover transform hover:scale-105 transition duration-500">
+                        <div class="p-3 text-sm text-center font-semibold text-gray-700">পুরনো স্কুলের দৃশ্য</div>
+                    </div>
+                    
+                    <div class="rounded-xl overflow-hidden card-tile animate-on-scroll" style="transition-delay: 0.2s;">
+                        <img src="Fzsstudemt.jpg" alt="বর্তমান শিক্ষার্থীরা" class="w-full h-48 object-cover transform hover:scale-105 transition duration-500">
+                        <div class="p-3 text-sm text-center font-semibold text-gray-700">বর্তমান শিক্ষার্থীরা</div>
+                    </div>
+                    
+                    <div class="rounded-xl overflow-hidden card-tile animate-on-scroll" style="transition-delay: 0.4s;">
+                        <img src="Aniversery.jpg" alt="১৮৫তম বার্ষিকী উদযাপন" class="w-full h-48 object-cover transform hover:scale-105 transition duration-500">
+                        <div class="p-3 text-sm text-center font-semibold text-gray-700">১৮৫তম বার্ষিকী উদযাপন</div>
+                    </div>
+                    
+                    <div class="rounded-xl overflow-hidden card-tile animate-on-scroll" style="transition-delay: 0.6s;">
+                        <img src="Fzs1.jpg" alt="বিশেষ অনুষ্ঠান ও শিক্ষকবৃন্দ" class="w-full h-48 object-cover transform hover:scale-105 transition duration-500">
+                        <div class="p-3 text-sm text-center font-semibold text-gray-700">বিশেষ অনুষ্ঠান ও শিক্ষকবৃন্দ</div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="events" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-extrabold text-red-800 text-center mb-12 animate-on-scroll">
+                    উদযাপন কর্মসূচি ও সময়সূচি
+                </h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <div class="bg-red-50 p-6 rounded-xl card-tile border-l-4 border-red-600 animate-on-scroll">
+                        <h3 class="text-2xl font-bold text-red-700 mb-3">প্রথম দিন: উদ্বোধনী পর্ব</h3>
+                        <p class="font-medium mb-3">শুরু: <span class="text-gray-600">২৫ ডিসেম্বর, ২০২৫ (সকাল ৯:০০)</span></p>
+                        <ul class="text-gray-700 space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-red-600 mt-1 mr-2"></i> জাতীয় পতাকা উত্তোলন ও বেলুন উড্ডয়ন।</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-red-600 mt-1 mr-2"></i> প্রধান অতিথি কর্তৃক মেলার উদ্বোধন।</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-red-600 mt-1 mr-2"></i> আলোচনা সভা ও প্রাক্তন ছাত্রদের সম্মাননা।</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-red-50 p-6 rounded-xl card-tile border-l-4 border-yellow-600 animate-on-scroll" style="transition-delay: 0.3s;">
+                        <h3 class="text-2xl font-bold text-red-700 mb-3">প্রধান আকর্ষণ ও সঙ্গীতানুষ্ঠান</h3>
+                        <p class="font-medium mb-3">লাইভ মিউজিক: <span class="text-red-600">নগর বাউল জেমস ও ওয়ারফেজ</span></p>
+                        <ul class="text-gray-700 space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-star text-yellow-600 mt-1 mr-2"></i> নগর বাউল জেমস এর মনোমুগ্ধকর পরিবেশনা।</li>
+                            <li class="flex items-start"><i class="fas fa-star text-yellow-600 mt-1 mr-2"></i> ওয়ারফেজ এর রক মিউজিকের বিশেষ আয়োজন।</li>
+                            <li class="flex items-start"><i class="fas fa-star text-yellow-600 mt-1 mr-2"></i> বর্ণাঢ্য র্যা লি ও স্যুভেনিওর প্রকাশ।</li>
+                            <li class="flex items-start"><i class="fas fa-star text-yellow-600 mt-1 mr-2"></i> লেজার শো ও ফায়ারওয়ার্কস।</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-red-50 p-6 rounded-xl card-tile border-l-4 border-red-600 animate-on-scroll" style="transition-delay: 0.6s;">
+                        <h3 class="text-2xl font-bold text-red-700 mb-3">দ্বিতীয় দিন: সমাপনী পর্ব</h3>
+                        <p class="font-medium mb-3">সমাপ্তি: <span class="text-gray-600">২৬ ডিসেম্বর, ২০২৫ (সন্ধ্যা ৬:০০)</span></p>
+                        <ul class="text-gray-700 space-y-2 text-sm">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-red-600 mt-1 mr-2"></i> প্রাক্তন ও বর্তমান ছাত্রদের মিলনমেলা।</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-red-600 mt-1 mr-2"></i> ধন্যবাদ জ্ঞাপন ও উপহার বিতরণ।</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-red-600 mt-1 mr-2"></i> ঐতিহ্যবাহী রাতের খাবার।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="notable-alumni" class="py-16 sm:py-24 bg-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-extrabold text-red-800 text-center mb-12 animate-on-scroll">
+                    কৃতি প্রাক্তন ছাত্র-ছাত্রী ও তাঁদের অবদান
+                </h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <div class="bg-white p-6 rounded-xl card-tile text-center border-t-4 border-red-700 animate-on-scroll">
+                        <i class="fas fa-user-tie text-5xl text-red-700 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">ড. অমল রায়</h3>
+                        <p class="text-sm font-medium text-red-600 mb-2">ব্যাচ: ১৯৫০ | অর্থনীতিবিদ</p>
+                        <p class="text-gray-600 text-sm">অর্থনীতিতে আন্তর্জাতিক অবদান ও গবেষণার জন্য সুপরিচিত। দেশের উন্নয়ন পরিকল্পনা প্রণয়নে গুরুত্বপূর্ণ ভূমিকা রেখেছেন।</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl card-tile text-center border-t-4 border-yellow-700 animate-on-scroll" style="transition-delay: 0.2s;">
+                        <i class="fas fa-feather-alt text-5xl text-yellow-700 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">কাজী শফিকুর রহমান</h3>
+                        <p class="text-sm font-medium text-yellow-600 mb-2">ব্যাচ: ১৯৬৫ | সাহিত্যিক ও শিক্ষাবিদ</p>
+                        <p class="text-gray-600 text-sm">বাংলা সাহিত্যে তাঁর অমূল্য সৃষ্টি ও শিক্ষাব্যবস্থায় তাঁর সংস্কারমূলক কাজের জন্য তিনি শ্রদ্ধেয়।</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl card-tile text-center border-t-4 border-red-700 animate-on-scroll" style="transition-delay: 0.4s;">
+                        <i class="fas fa-gavel text-5xl text-red-700 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">বিচারপতি মোস্তফা কামাল</h3>
+                        <p class="text-sm font-medium text-red-600 mb-2">ব্যাচ: ১৯৭২ | আইনজ্ঞ</p>
+                        <p class="text-gray-600 text-sm">দেশের উচ্চ আদালতে বিচারক হিসেবে দায়িত্ব পালন করেছেন এবং ন্যায়বিচার প্রতিষ্ঠায় তাঁর অবদান অনস্বীকার্য।</p>
+                    </div>
+
+                </div>
+                
+                <div class="text-center mt-12 animate-on-scroll" style="transition-delay: 0.6s;">
+                    <a href="#" class="inline-flex items-center space-x-2 btn-primary rounded-full py-3 px-8 text-lg font-semibold shadow-xl hover:shadow-2xl">
+                        <span>সকল কৃতি ছাত্রদের তালিকা দেখুন</span>
+                        <i class="fas fa-users"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="alumni" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-extrabold text-red-800 text-center mb-12 animate-on-scroll">
+                    প্রাক্তন ছাত্রদের শুভেচ্ছা বার্তা
+                </h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <div class="bg-gray-50 p-6 rounded-xl card-tile animate-on-scroll">
+                        <p class="italic text-gray-700 mb-4">"স্কুলের ১৮৫ বছর পূর্তি উপলক্ষে সকল শিক্ষক ও শিক্ষার্থীকে অভিনন্দন জানাই। আমার স্কুল জীবনই আমার জীবনের ভিত্তি তৈরি করেছে।"</p>
+                        <p class="font-bold text-red-600">- মো. রফিকুল ইসলাম (ব্যাচ: ১৯৯৫)</p>
+                        <p class="text-sm text-gray-500">বিশিষ্ট প্রকৌশলী</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-xl card-tile animate-on-scroll" style="transition-delay: 0.2s;">
+                        <p class="italic text-gray-700 mb-4">"লাল ভবনের প্রতিটি স্মৃতি আজও আমার মনে অমলিন। এই ঐতিহ্যবাহী স্কুলের অংশ হতে পেরে আমি গর্বিত।"</p>
+                        <p class="font-bold text-red-600">- ড. ফাহমিদা হক (ব্যাচ: ২০০৫)</p>
+                        <p class="text-sm text-gray-500">চিকিৎসক ও গবেষক</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-xl card-tile animate-on-scroll" style="transition-delay: 0.4s;">
+                        <p class="italic text-gray-700 mb-4">"আশা করি এই উদযাপন আমাদের মাঝে বন্ধন আরও দৃঢ় করবে। জিলা স্কুল চিরজীবী হোক!"</p>
+                        <p class="font-bold text-red-600">- সুবীর চৌধুরী (ব্যাচ: ১৯৮৮)</p>
+                        <p class="text-sm text-gray-500">লেখক ও শিক্ষাবিদ</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="text-center mt-12 animate-on-scroll" style="transition-delay: 0.6s;">
+                    <a href="#" class="inline-flex items-center space-x-2 btn-primary rounded-full py-3 px-8 text-lg font-semibold shadow-xl hover:shadow-2xl">
+                        <span>সকল শুভেচ্ছা বার্তা দেখুন</span>
+                        <i class="fas fa-comments"></i>
+                    </a>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="documentary" class="py-16 sm:py-24 header-bg text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-extrabold text-yellow-400 text-center mb-8 animate-on-scroll">
+                    স্কুলের উপর তথ্যচিত্র
+                </h2>
+                <p class="mb-10 text-xl font-light animate-on-scroll" style="transition-delay: 0.2s;">
+                    ১৮৫ বছরের পথচলা নিয়ে নির্মিত বিশেষ তথ্যচিত্রটি দেখুন।
+                </p>
+                
+                <div class="mx-auto max-w-4xl rounded-xl overflow-hidden shadow-2xl border-4 border-yellow-400 animate-on-scroll" style="transition-delay: 0.5s;">
+                    <div class="aspect-video">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/_Eca7pZicLs" title="FZS Documentary" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <p class="mt-8 text-sm font-light text-yellow-200 animate-on-scroll" style="transition-delay: 0.7s;">
+                    **দ্রষ্টব্য:** প্লেসহোল্ডার ভিডিও লিঙ্কটি আপনার আসল ডকুমেন্টারি লিঙ্ক দিয়ে পরিবর্তন করুন।
+                </p>
+            </div>
+        </section>
+        
+        <section id="contact" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-extrabold text-red-800 text-center mb-12 animate-on-scroll">
+                    যোগাযোগ এবং রেজিস্ট্রেশন
+                </h2>
+              <div class="grid md:grid-cols-2 gap-10">
+                    
+                    <div class="bg-red-50 p-8 rounded-xl card-tile animate-on-scroll">
+                        <h3 class="text-2xl font-bold text-red-700 mb-4">জরুরী যোগাযোগ</h3>
+                        <ul class="space-y-4 text-gray-700">
+                            <li class="flex items-center">
+                                <i class="fas fa-phone-alt text-red-600 mr-3"></i>
+                                <span>ফোন: +৮৮০ ৯৬৯৬ XXXX (রেজিস্ট্রেশন)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-envelope text-red-600 mr-3"></i>
+                                <span>ইমেইল: fzs185@example.com</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-red-600 mr-3"></i>
+                                <span>ঠিকানা: গোয়ালচামট, ফরিদপুর-৭৮০০</span>
+                            </li>
+                        </ul>
+                        <h3 class="text-xl font-bold text-red-700 mt-6 mb-3">সোশ্যাল মিডিয়া</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-red-700 hover:text-yellow-600 text-2xl"><i class="fab fa-facebook-square"></i></a>
+                            <a href="#" class="text-red-700 hover:text-yellow-600 text-2xl"><i class="fab fa-youtube-square"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8 rounded-xl card-tile header-bg text-white animate-on-scroll" style="transition-delay: 0.3s;">
+                        <h3 class="text-2xl font-bold text-yellow-400 mb-4">রেজিস্ট্রেশন করুন</h3>
+                        <p class="mb-6 font-light">১৮৫ বছর পূর্তি উদযাপনে অংশ নিতে আজই আপনার রেজিস্ট্রেশন সম্পন্ন করুন।</p>
+                        <a href="#" class="inline-block btn-primary rounded-full py-3 px-8 text-lg font-semibold shadow-xl hover:shadow-2xl">
+                            <span>রেজিস্ট্রেশন ফর্ম</span>
+                            <i class="fas fa-edit ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="header-bg text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm font-light">
+            <p>© ২০২৫ ফরিদপুর জিলা স্কুল ১৮৫ বছর উদযাপন কমিটি। সর্বস্বত্ব সংরক্ষিত।</p>
+            <p class="mt-2 text-xs text-yellow-400">গৌরবময় ১৮৫ বছরের পথচলা।</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ইন্ট্রো ওভারলে লজিক
+            const signatureText="Faridpur Zilla School";
+            const subtitleText="185th Anniversary Celebration 🎊";
+            const sig=document.getElementById('signature');
+            const sub=document.getElementById('subtitle');
+            const intro=document.getElementById('intro');
+            
+            // টাইপিং ইফেক্ট ফাংশন (সিগনেচার স্টাইল)
+            function typeText(el,text,speed=80){
+                return new Promise(res=>{
+                    el.textContent='';
+                    let i=0;
+                    function step(){
+                        if(i<text.length){
+                            el.textContent+=text.charAt(i);
+                            i++;
+                            setTimeout(step,speed);
+                        } else res();
+                    }
+                    step();
+                });
+            }
+            
+            // ইন্ট্রো সিকোয়েন্স
+            (async()=>{
+                // ১. সিগনেচার টাইপ শুরু
+                await typeText(sig,signatureText,80);
+                await new Promise(r=>setTimeout(r,400));
+                // ২. সাবটাইটেল ফেড ইন ও টাইপ
+                sub.style.opacity=1;
+                await typeText(sub,subtitleText,70);
+                await new Promise(r=>setTimeout(r,900));
+                
+                // ৩. পুরো ওভারলে ফেড আউট
+                intro.classList.add('fade-out');
+                document.body.style.overflow = 'hidden'; // লোডিং স্ক্রিন চলাকালীন স্ক্রোলিং বন্ধ
+                
+                // ৪. অ্যানিমেশন শেষে ইন্ট্রো রিমুভ ও স্ক্রোলিং চালু
+                setTimeout(()=>{
+                    intro.remove();
+                    document.body.classList.remove('intro-locked');
+                    document.body.style.overflow = '';
+                },1000);
+            })();
+
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // মোবাইল মেনু টগল
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+                mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            });
+
+            // স্ক্রোল অ্যানিমেশন ফাংশন
+            const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                threshold: 0.1 // যখন উপাদানটির ১০% দেখা যাবে
+            });
+
+            animateOnScrollElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // নেভিগেশন বারের স্টাইল পরিবর্তনের জন্য স্ক্রোল ইভেন্ট
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-opacity-95');
+                    navbar.classList.remove('h-20');
+                    navbar.classList.add('h-16');
+                } else {
+                    navbar.classList.remove('bg-opacity-95');
+                    navbar.classList.add('h-20');
+                    navbar.classList.remove('h-16');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
